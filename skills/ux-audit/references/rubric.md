@@ -30,6 +30,38 @@ At least one is true:
 - **Excludes** — an accessibility failure that locks a user group out (contrast below WCAG AA, unreachable targets, keyboard traps, no representation in a personalisation product).
 - **Undecodable** — an element carries meaning the user has no way to decode, and it affects their decision.
 
+## Where this scale comes from
+
+Our RAG is not invented. Two published scales map to it almost exactly — cite them when a client asks why three points:
+
+**[MeasuringU's 3-point severity](https://measuringu.com/rating-severity/)** — a direct 1:1, no information lost:
+
+| Theirs | Ours |
+|---|---|
+| **Minor** — "Causes some hesitation or slight irritation." | 🟠 Amber |
+| **Moderate** — "Causes occasional task failure for some users; causes delays and moderate irritation." | 🟠 Amber / 🔴 Red boundary |
+| **Critical** — "Leads to task failure. Causes user extreme irritation." | 🔴 Red |
+
+**[Baymard's guideline severity](https://baymard.com/research/methodology)** — e-commerce-native, which matches most of our work:
+
+| Theirs | Ours |
+|---|---|
+| **Interruption** — "the test participants were only interrupted briefly" | 🟠 Amber |
+| **Disruptive** — "came to a full stop in what they were doing and had to actively resolve the issue" | 🟠 Amber / 🔴 Red boundary |
+| **Harmful** — "unable to complete their task at hand, often having to abandon the site" | 🔴 Red |
+
+**[NN/g's 0–4 scale](https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/)** carries more resolution than ours (it separates cosmetic from minor). Its three factors — frequency, impact, persistence — **do not combine by formula**; Nielsen has evaluators "combine all aspects of severity in a single severity rating as an overall assessment." Our RAG does the same. If you find yourself multiplying or averaging factors, you've invented something and attributed it to Nielsen.
+
+### The thing we *are* inventing: Green
+
+Every published scale above rates **problems**, and a problem that isn't a problem never gets logged — so none of them has a Green. By rating **elements** rather than problems, we need an "it works" end that we defined ourselves.
+
+That's a deliberate departure, and it earns its keep — a client redesigning a flow needs to know what *not* to break. But be honest about it: Green is our own construct, not inherited practice. Never claim NN/g or Baymard backing for the Green end of the scale.
+
+### Polarity warning
+
+If you ever cite more than one severity scale, normalise direction first. **Nielsen: 4 = worst. Rubin: 4 = worst. Dumas & Redish: 1 = worst.** Mixing them ships inverted ratings.
+
 ## Tie-breakers
 
 Use in order. Stop at the first that resolves.

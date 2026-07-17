@@ -26,7 +26,15 @@ Granular, per-element UX audit of a product journey on desktop or mobile. Rates 
 
 Or just describe the work — "audit this checkout flow on mobile", "UX review of these screens" — and it triggers.
 
-**Inputs:** screenshots, a live URL (driven via browser automation), or Figma frames.
+**Inputs:** screenshots, a live URL (driven via Playwright MCP), or Figma frames.
+
+**Optional setup — only needed for the live-URL path:**
+
+```bash
+claude mcp add playwright npx @playwright/mcp@latest   # multi-viewport capture
+```
+
+Without it the skill still works from screenshots; it will say the capture path is unavailable rather than guessing at pages it can't see. Accessibility findings additionally lean on `npx @axe-core/cli` when a live URL is in scope — no install needed, it runs via npx.
 
 **Output:** a published scorecard artifact — per-element findings, RAG tallies, lens breakdown, ranked critical pain points, platform filters.
 
@@ -49,6 +57,10 @@ Or just describe the work — "audit this checkout flow on mobile", "UX review o
 
 The rating thresholds and tie-breakers live in `skills/ux-audit/references/rubric.md`. That file is what makes two auditors agree — read it before disputing a rating.
 
+Our three points aren't invented: [MeasuringU's Minor/Moderate/Critical](https://measuringu.com/rating-severity/) maps 1:1, and [Baymard's Interruption/Disruptive/Harmful](https://baymard.com/research/methodology) maps cleanly and is e-commerce-native. The one thing we *did* invent is **Green** — every published scale rates *problems*, and a non-problem never gets logged, so no established scale has a positive end. We rate elements, so we need one. Be honest about that in client conversations.
+
+**Read this before quoting a number at a client:** the audit is a single evaluator, and the research on that is unflattering — ~35% problem detection, ~50% false alarms, and severity correlating at 0.24 between any two evaluators ([Hertzum & Jacobsen 2003](https://mortenhertzum.dk/publ/IJHCI2003.pdf)). Nielsen prescribes 3–5 evaluators reconciled. The rubric's tie-breakers attack the documented cause of false positives, but they don't make one evaluator equal three. Every deliverable says so in its footer. Don't let a scorecard get read as measurement.
+
 ## Changing a skill
 
 Skills are studio standards, so treat edits like standards changes:
@@ -62,12 +74,16 @@ Skills are studio standards, so treat edits like standards changes:
 ```
 skills/
 └── ux-audit/
-    ├── SKILL.md                    # trigger + workflow
+    ├── SKILL.md                      # trigger + workflow
     ├── references/
-    │   ├── rubric.md               # RAG thresholds, tie-breakers, calibration
-    │   ├── heuristics-desktop.md   # hover, focus, keyboard, wide layouts
-    │   ├── heuristics-mobile.md    # touch targets, thumb zone, gestures, safe areas
-    │   └── journey-mapping.md      # captures → states, collapsing repeats
+    │   ├── rubric.md                 # RAG thresholds, tie-breakers, calibration
+    │   ├── heuristics-desktop.md     # hover, focus, keyboard, wide layouts, Norman
+    │   ├── heuristics-mobile.md      # touch targets, gestures, safe areas, WCAG 2.2
+    │   ├── journey-mapping.md        # captures → states, collapsing repeats
+    │   ├── cognitive-walkthrough.md  # Norman's 7 questions, Krug's trunk test
+    │   └── deceptive-patterns.md     # dark patterns, and where the line sits
     └── assets/
-        └── scorecard-template.html # the deliverable
+        └── scorecard-template.html   # the deliverable
 ```
+
+Thresholds are cited to primary sources throughout, because the near-misses bite: Apple's 44**pt** and WCAG 2.5.5's 44**px** are unrelated standards and the latter is **AAA** — the AA floor is **24px** (SC 2.5.8, five exceptions). Contrast is 4.5:1 text / 3:1 large text / 3:1 non-text; applying 4.5:1 to a border is a false positive. Don't loosen a citation without checking the source.

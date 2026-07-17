@@ -50,13 +50,47 @@ Load when desktop is in scope. Baseline viewport 1440×900. These are prompts fo
 
 ## C6 · Accessibility
 
-- **Contrast** — WCAG AA: 4.5:1 body, 3:1 large text and UI boundaries. Check text on gradients, on images, and inside blurred overlays especially.
-- **Focus visibility** — a visible ring on every focusable element; never `outline: none` without a replacement.
+**WCAG levels are not a severity scale.** A / AA / AAA measures how ambitious the *requirement* is, not how bad the *failure* is. A failed Level A criterion is the most essential tier, not the mildest — mapping A/AA/AAA onto Green/Amber/Red inverts the meaning. Rate:
+
+- **Red** — fails any Level **A or AA** success criterion in scope.
+- **Amber** — passes A/AA but fails AAA, or passes on a technicality (programmatic label present but [SC 2.5.3 Label in Name](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html) mismatched).
+- **Green** — passes all in-scope A/AA.
+
+Record the conformance level as metadata in the rationale, never as the rating itself.
+
+**Per-element WCAG ratings are not a conformance claim.** WCAG conformance is formally claimed per *full page* (WCAG 2.2 §5.2.2). Our per-element findings are a diagnostic. If the deliverable touches accessibility, say so explicitly — don't let a client read the scorecard as a conformance audit.
+
+- **Contrast** — 4.5:1 body text, 3:1 large text ([SC 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)), 3:1 UI components and graphical objects ([SC 1.4.11](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)) — all AA. Applying 4.5:1 to borders and icons is a false positive.
+- **Focus visibility** — a visible ring on every focusable element ([SC 2.4.7](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html), **AA**); never `outline: none` without a replacement. New in 2.2: [SC 2.4.11 Focus Not Obscured](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html) (AA) — sticky headers must not cover the focused element.
 - **Keyboard-only completion** — can the entire journey be finished without a mouse?
-- **Semantics** — real buttons and inputs, labelled. Icon-only controls with accessible names. Headings in order.
+- **Semantics** — real buttons and inputs, labelled ([SC 4.1.2](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html), A). Headings in order.
+- **Forms and checkout** — [SC 3.3.1 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html) (A), [3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html) (A), [3.3.3 Error Suggestion](https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html) (**AA**), [3.3.4 Error Prevention (Legal, Financial, Data)](https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html) (AA), [3.3.7 Redundant Entry](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html) (A, new in 2.2).
 - **Representation** — in a personalisation product, the range of skin tones, body types, hair textures, and gender presentation is a C6 concern, not a content nit.
 - **Motion** — auto-playing video, parallax, and transitions honouring `prefers-reduced-motion`.
 - **Zoom** — layout holds at 200% browser zoom.
+- **Do not audit against SC 4.1.1 Parsing** — obsolete and removed in WCAG 2.2.
+
+## Norman's vocabulary — use it, it makes findings precise
+
+From *The Design of Everyday Things* (Revised, 2013), Ch. 1:
+
+> **"Affordances determine what actions are possible. Signifiers communicate where the action should take place. We need both."**
+
+An affordance is a *relationship* between an object's properties and an agent's capabilities — not a property. A **signifier** is "any perceivable indicator that communicates appropriate behavior to a person."
+
+This resolves the most common audit muddle. A muted-olive Next button that is actually clickable has the affordance and a *broken signifier* — the element says "you cannot act here" while permitting action. That's a **C1** finding, and "signifier contradicts affordance" states it exactly.
+
+**Norman's Gulfs** ([coined 1986 by Hutchins, Hollan & Norman](https://www.nngroup.com/articles/two-ux-gulfs-evaluation-execution/) — not Norman alone):
+
+> "We bridge the **Gulf of Execution** through the use of signifiers, constraints, mappings, and a conceptual model. We bridge the **Gulf of Evaluation** through the use of feedback and a conceptual model."
+
+Execution-gulf failures are usually C1/C2. Evaluation-gulf failures — user acted but can't tell what happened — are usually C3/C5.
+
+**Slips vs mistakes** (Norman & Reason) — for C3 error findings:
+- **Slip** — goal correct, execution wrong. Design fix: better signifiers, constraints, undo.
+- **Mistake** — goal or plan wrong. Design fix: a better conceptual model.
+
+Naming which one an error state invites is more useful than "error handling is poor".
 
 ## Capture checklist
 
