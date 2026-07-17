@@ -1,0 +1,275 @@
+<!--
+  STUDIO UX AUDIT SCORECARD — TEMPLATE
+  ------------------------------------
+  Edit ONLY the two marked blocks below:
+    1. META    — client, journey, platform, date
+    2. DATA    — criticals + per-state findings
+  Leave CSS and render logic alone. Consistency across client decks is the point.
+
+  Finding tuple: [lens, rating, element, rationale, platform?]
+    lens     'C1' UI Design | 'C2' Information Architecture | 'C3' Interaction Design
+             'C4' Content   | 'C5' Functionality            | 'C6' Accessibility
+    rating   'g' Good | 'a' Needs improvement | 'r' Critical
+    platform omit = applies to all platforms in scope | 'desktop' | 'mobile'
+-->
+<title>UX Audit — Scorecard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg:#F5F6F8; --surface:#FFF; --surface-2:#EDEFF3;
+    --ink:#1B2029; --ink-soft:#525C6E; --ink-faint:#828D9F; --line:#DDE1E8;
+    --accent:#2F4B8C;
+    --good:#1B8F5A; --good-bg:#E4F4EC;
+    --warn:#C77A12; --warn-bg:#FBEEDA;
+    --crit:#CE3535; --crit-bg:#FBE4E4;
+    --shadow:0 1px 2px rgba(20,30,50,.06), 0 6px 20px rgba(20,30,50,.06);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --display:"Helvetica Neue",system-ui,-apple-system,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0E1116; --surface:#161B23; --surface-2:#1D242E;
+      --ink:#E7EBF2; --ink-soft:#A0AABB; --ink-faint:#6C7789; --line:#28313D;
+      --accent:#7C9BE0;
+      --good:#45C489; --good-bg:#123020;
+      --warn:#E7A94A; --warn-bg:#33270F;
+      --crit:#EC6A6A; --crit-bg:#35191A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F6F8;--surface:#FFF;--surface-2:#EDEFF3;--ink:#1B2029;--ink-soft:#525C6E;--ink-faint:#828D9F;--line:#DDE1E8;--accent:#2F4B8C;
+    --good:#1B8F5A;--good-bg:#E4F4EC;--warn:#C77A12;--warn-bg:#FBEEDA;--crit:#CE3535;--crit-bg:#FBE4E4;
+    --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1116;--surface:#161B23;--surface-2:#1D242E;--ink:#E7EBF2;--ink-soft:#A0AABB;--ink-faint:#6C7789;--line:#28313D;--accent:#7C9BE0;
+    --good:#45C489;--good-bg:#123020;--warn:#E7A94A;--warn-bg:#33270F;--crit:#EC6A6A;--crit-bg:#35191A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 96px}
+
+  header{padding:44px 0 24px}
+  .kicker{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.04;letter-spacing:-.02em;margin:10px 0 12px;text-wrap:balance}
+  .lede{color:var(--ink-soft);max-width:64ch;font-size:16px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:13px;color:var(--ink-faint)}
+  .meta-row b{color:var(--ink-soft);font-weight:600}
+
+  .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 16px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .stat.g::before{background:var(--good)} .stat.a::before{background:var(--warn)} .stat.r::before{background:var(--crit)}
+  .stat .n{font-family:var(--mono);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+  .stat.g .n{color:var(--good)} .stat.a .n{color:var(--warn)} .stat.r .n{color:var(--crit)}
+  .stat .lbl{font-size:13px;color:var(--ink-soft);margin-top:6px}
+  .stat .sub{font-size:12px;color:var(--ink-faint);margin-top:2px}
+
+  /* lens breakdown */
+  .lens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px;margin-bottom:18px}
+  .lens{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .lens .code{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+  .lens .nm{font-size:12.5px;font-weight:650;margin:2px 0 8px;color:var(--ink)}
+  .bar{display:flex;height:6px;border-radius:4px;overflow:hidden;background:var(--surface-2)}
+  .bar i{display:block}
+  .bar .g{background:var(--good)} .bar .a{background:var(--warn)} .bar .r{background:var(--crit)}
+  .lens .cnt{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:6px;font-variant-numeric:tabular-nums}
+
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 6px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+  .controls .grp{display:flex;gap:6px;align-items:center}
+  .controls .cap{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-right:2px}
+  button.chip{font:inherit;font-size:12px;font-weight:650;padding:5px 11px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer}
+  button.chip:hover{background:var(--surface-2)}
+  button.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+  button.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .crit-box{margin:22px 0 8px;border:1px solid var(--crit);background:var(--crit-bg);border-radius:14px;padding:18px 20px}
+  .crit-box h3{margin:0 0 10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--crit);font-weight:800}
+  .crit-box ol{margin:0;padding-left:20px}
+  .crit-box li{margin:6px 0;font-size:14.5px}
+
+  section.screen{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-top:18px;overflow:hidden}
+  .s-head{display:flex;align-items:center;gap:13px;padding:15px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .s-num{font-family:var(--mono);font-weight:700;font-size:13px;color:#fff;background:var(--accent);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none}
+  .s-title{font-family:var(--display);font-weight:800;font-size:16.5px;letter-spacing:-.01em}
+  .s-phase{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-faint);font-weight:700;margin-left:auto}
+  .s-mini{display:flex;gap:5px}
+  .s-mini span{font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px}
+  .s-mini .g{color:var(--good);background:var(--good-bg)} .s-mini .a{color:var(--warn);background:var(--warn-bg)} .s-mini .r{color:var(--crit);background:var(--crit-bg)}
+
+  .f{display:grid;grid-template-columns:150px 132px 1fr;gap:16px;padding:14px 20px;border-top:1px solid var(--line);align-items:start}
+  .f:first-child{border-top:none}
+  .lens-tag{display:flex;flex-direction:column;gap:2px;padding-top:2px}
+  .lens-tag .c{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent)}
+  .lens-tag .t{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);line-height:1.25}
+  .rate{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:4px 10px 4px 8px;border-radius:20px;white-space:nowrap;align-self:start}
+  .rate .d{width:8px;height:8px;border-radius:50%;flex:none}
+  .rate.g{color:var(--good);background:var(--good-bg)} .rate.g .d{background:var(--good)}
+  .rate.a{color:var(--warn);background:var(--warn-bg)} .rate.a .d{background:var(--warn)}
+  .rate.r{color:var(--crit);background:var(--crit-bg)} .rate.r .d{background:var(--crit)}
+  .el{font-weight:650;display:block;margin-bottom:2px}
+  .el .plat{font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);border:1px solid var(--line);border-radius:4px;padding:1px 5px;margin-left:7px;vertical-align:1px}
+  .why{color:var(--ink-soft);font-size:14px}
+  .hidden{display:none}
+  .empty{padding:28px 20px;text-align:center;color:var(--ink-faint);font-size:14px}
+
+  footer{margin-top:40px;text-align:center;color:var(--ink-faint);font-size:12.5px}
+  @media (max-width:640px){
+    .summary{grid-template-columns:1fr}
+    .f{grid-template-columns:1fr;gap:6px}
+    .lens-tag{flex-direction:row;gap:8px;align-items:baseline}
+    .s-phase{margin-left:0;width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+  <header>
+    <!-- ========== 1. META — EDIT ========== -->
+    <div class="kicker">Shoreditch Design Studio · UX Audit</div>
+    <h1 id="t-title">[Client] — [Journey Name]</h1>
+    <p class="lede" id="t-lede">Granular, per-element usability audit of [journey]. Every interface element is scored Red / Amber / Green across six lenses — UI Design, Information Architecture, Interaction Design, Content, Functionality, and Accessibility — with a one-line rationale.</p>
+    <div class="meta-row">
+      <span><b>Scope:</b> [start → end]</span>
+      <span><b>Platform:</b> [Desktop 1440×900 · Mobile 390×844]</span>
+      <span><b>Region:</b> [GB]</span>
+      <span><b>Date:</b> [DD Mon YYYY]</span>
+    </div>
+    <!-- ========== /META ========== -->
+  </header>
+
+  <div class="summary" id="summary"></div>
+  <div class="lens-grid" id="lensgrid"></div>
+
+  <div class="controls">
+    <div class="grp"><span class="cap">Rating</span>
+      <button class="chip" data-f="rating" data-v="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="rating" data-v="g" aria-pressed="false">Good</button>
+      <button class="chip" data-f="rating" data-v="a" aria-pressed="false">Needs work</button>
+      <button class="chip" data-f="rating" data-v="r" aria-pressed="false">Critical</button>
+    </div>
+    <div class="grp" id="platgrp"></div>
+  </div>
+
+  <div class="crit-box" id="critbox"></div>
+  <div id="screens"></div>
+  <footer>Ratings are heuristic, from captured states — validate priority fixes with moderated testing. Uncaptured states are listed as limits on coverage, not passes.</footer>
+</div>
+
+<script>
+const LENS = {
+  C1:'User Interface Design', C2:'Information Architecture', C3:'Interaction Design',
+  C4:'Content', C5:'Functionality', C6:'Accessibility'
+};
+const RATE = { g:'Good', a:'Needs work', r:'Critical' };
+
+/* ========== 2. DATA — EDIT ==========
+   Replace criticals + states wholesale. The two entries below are worked
+   examples from the Funko Pop! Yourself audit — delete them.               */
+
+const criticals = [
+  '<b>Cart splits one configured product into multiple line items</b> — accessories styled onto figures reappear as separate rows, reading as duplicate charges.',
+  '<b>Price changes between Review (£64.99) and Cart (£68.99)</b> with no explanation — erodes trust at the highest-intent moment.',
+];
+
+const states = [
+  { n:1, name:'Landing / Pack Selector', phase:'Entry', f:[
+    ['C4','g','Value proposition','"Build a Pop! inspired by you" + price-from labels set expectation and cost upfront.'],
+    ['C4','a','"Single, 2-Pack, or Baby POP!"','Subcopy promises three paths but only two cards render — named yet unselectable option creates a mismatch.'],
+    ['C2','a','Unboxing video weight','A large video block sits under the choice, making the primary decision compete with marketing.','desktop'],
+  ]},
+  { n:2, name:'Builder — Body', phase:'Build', f:[
+    ['C1','g','Live 3D preview','Large real-time figure gives immediate feedback on every choice.'],
+    ['C2','r','No progress indicator','No "step X of Y" in a 12-step flow — user cannot judge whether to start or how much is left.'],
+    ['C6','r','Four skin tones only','Representation failure at the core of a personalisation product.'],
+    ['C6','a','Tone tiles below target size','Swatches fall under 44pt, crowding mis-taps.','mobile'],
+  ]},
+];
+/* ========== /DATA ========== */
+
+// ---- derive
+const all = states.flatMap(s => s.f);
+const plats = [...new Set(all.map(x => x[4]).filter(Boolean))];
+let filter = { rating:'all', platform:'all' };
+
+// summary
+const cnt = r => all.filter(x => x[1] === r).length;
+const [G,A,R] = ['g','a','r'].map(cnt); const TOT = G+A+R;
+const pct = n => TOT ? Math.round(n/TOT*100) : 0;
+document.getElementById('summary').innerHTML = `
+  <div class="stat g"><div class="n">${G}</div><div class="lbl">Good</div><div class="sub">${pct(G)}% of findings</div></div>
+  <div class="stat a"><div class="n">${A}</div><div class="lbl">Needs improvement</div><div class="sub">${pct(A)}% of findings</div></div>
+  <div class="stat r"><div class="n">${R}</div><div class="lbl">Critical pain points</div><div class="sub">${pct(R)}% of findings</div></div>`;
+
+// lens breakdown
+document.getElementById('lensgrid').innerHTML = Object.entries(LENS).map(([code,name]) => {
+  const rows = all.filter(x => x[0] === code);
+  const g = rows.filter(x=>x[1]==='g').length, a = rows.filter(x=>x[1]==='a').length, r = rows.filter(x=>x[1]==='r').length;
+  const t = rows.length || 1;
+  return `<div class="lens">
+    <div class="code">${code}</div><div class="nm">${name}</div>
+    <div class="bar">
+      <i class="g" style="width:${g/t*100}%"></i><i class="a" style="width:${a/t*100}%"></i><i class="r" style="width:${r/t*100}%"></i>
+    </div>
+    <div class="cnt">${rows.length} finding${rows.length===1?'':'s'} · ${g}G ${a}A ${r}R</div>
+  </div>`;
+}).join('');
+
+// platform filter (only when findings are platform-tagged)
+if (plats.length) {
+  document.getElementById('platgrp').innerHTML = `<span class="cap">Platform</span>
+    <button class="chip" data-f="platform" data-v="all" aria-pressed="true">All</button>` +
+    plats.map(p => `<button class="chip" data-f="platform" data-v="${p}" aria-pressed="false">${p[0].toUpperCase()+p.slice(1)}</button>`).join('');
+}
+
+// criticals
+document.getElementById('critbox').innerHTML = criticals.length
+  ? `<h3>Top critical pain points</h3><ol>${criticals.map(c=>`<li>${c}</li>`).join('')}</ol>`
+  : '';
+if (!criticals.length) document.getElementById('critbox').style.display = 'none';
+
+// render
+function render() {
+  const keep = x =>
+    (filter.rating === 'all' || x[1] === filter.rating) &&
+    (filter.platform === 'all' || !x[4] || x[4] === filter.platform);
+
+  const html = states.map(s => {
+    const rows = s.f.filter(keep);
+    if (!rows.length) return '';
+    const c = r => s.f.filter(x=>x[1]===r).length;
+    const mini = ['g','a','r'].map(r => c(r) ? `<span class="${r}">${c(r)} ${r.toUpperCase()}</span>` : '').join('');
+    return `<section class="screen">
+      <div class="s-head">
+        <div class="s-num">${s.n}</div>
+        <div class="s-title">${s.name}</div>
+        <div class="s-mini">${mini}</div>
+        <div class="s-phase">${s.phase}</div>
+      </div>
+      <div>${rows.map(x => `
+        <div class="f">
+          <div class="lens-tag"><span class="c">${x[0]}</span><span class="t">${LENS[x[0]]}</span></div>
+          <div class="rate ${x[1]}"><span class="d"></span>${RATE[x[1]]}</div>
+          <div>
+            <span class="el">${x[2]}${x[4] ? `<span class="plat">${x[4]}</span>` : ''}</span>
+            <span class="why">${x[3]}</span>
+          </div>
+        </div>`).join('')}</div>
+    </section>`;
+  }).join('');
+  document.getElementById('screens').innerHTML = html || '<div class="empty">No findings match this filter.</div>';
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('button.chip'); if (!b) return;
+  filter[b.dataset.f] = b.dataset.v;
+  document.querySelectorAll(`button.chip[data-f="${b.dataset.f}"]`)
+    .forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+  render();
+});
+render();
+</script>
