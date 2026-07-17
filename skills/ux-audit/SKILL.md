@@ -21,7 +21,7 @@ Produce an audit a *different* auditor would reproduce. Consistency across the s
 
 Pin down before capturing anything:
 
-- **Product + journey** — exact start and end state (e.g. "landing → build 2-pack → cart").
+- **Product + journey** — exact start and end state (e.g. "landing → configure product → cart").
 - **Platform(s)** — desktop, mobile, or both. Drives which heuristics pack loads.
 - **Region/locale** — pricing, legal copy, and available options vary.
 - **Audience** — first-time buyer vs returning power user changes what counts as friction.
@@ -130,7 +130,7 @@ Boundary calls that come up constantly:
 
 - Padding the count with restatements of one defect across three lenses. One defect, one finding, best-fit lens.
 - Rating a whole screen Amber. Rate elements.
-- Copying the Funko audit's findings onto a new client. Different product, different evidence.
+- Copying a previous audit's findings onto a new client. The rubric's anchors calibrate your *ratings*; they are not a checklist of defects to go confirm. Different product, different evidence.
 - Treating a deliberate brand choice as a defect without evidence it costs the user something.
 - Flagging "too many steps" as a finding on its own. Per Krug's Second Law, click count isn't the problem — ambiguity per click is. Name the ambiguous steps or drop it.
 - Citing "44px, WCAG" for touch targets. That's an **AAA** criterion in the wrong units; the AA floor is **24px**. See the mobile pack.

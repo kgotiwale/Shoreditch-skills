@@ -57,9 +57,11 @@ Check each state against these. Named per Brignull's taxonomy and the EU/FTC enf
 2. **Honesty** — does the copy make claims you can verify? A countdown that survives a reload is a lie, not a nudge.
 3. **Default** — does inaction cost the user money? Pre-selected paid options fail here immediately.
 
-**Redundant nagging is its own finding** even when each individual instance is honest. An add-on the user could already toggle inline, re-pitched as a blocking modal, is *Nagging* — the pattern is the repetition. (The Funko audit's UV Protector modal is exactly this: honest copy, honest price, but pitched a second time as an interruption after the inline checkbox already offered it.)
+**Redundant nagging is its own finding** even when each individual instance is honest. An add-on the user could already toggle inline, re-pitched as a blocking modal one screen later, is *Nagging* — the pattern is the repetition, not any single pitch. Honest copy and an honest price don't excuse being asked twice.
 
-**Distinguish emphasis from entrapment.** Funko's UV modal styles "Okay" as a black primary and "No Thanks" as muted — asymmetric emphasis, but both are one click, nothing is pre-checked, and nothing is charged by inaction. That's **Amber** (C3), not Red. Calling it Red would be exactly the false positive the literature warns about.
+**Distinguish emphasis from entrapment.** The archetype: an upsell modal styling "Okay" as a high-contrast primary and "No Thanks" as a muted secondary. That's asymmetric emphasis — but both are one click, both are visible without scrolling, nothing is pre-checked, and inaction charges nothing. **Amber** (C3), not Red.
+
+Rating that Red is exactly the false positive the literature warns about. Escalate it only when a symmetry, honesty, or default test actually fails: the decline is buried, the claim is unverifiable, or standing still costs money.
 
 ## Regulatory footing
 

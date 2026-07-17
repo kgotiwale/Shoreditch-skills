@@ -62,7 +62,7 @@ Krug's procedure: take a state, **squint or hold it at arm's length**, and try t
 
 > "the true test isn't whether you can figure it out given enough time and close scrutiny. The standard needs to be that these elements pop off the page so clearly that it doesn't matter whether you're looking closely or not."
 
-Missing "you are here" is the single most common failure in a multi-step builder, and it's a **C2** finding. (It's exactly what the Funko audit's "no progress indicator" Red was — trunk test item 5.)
+Missing "you are here" is the single most common failure in a multi-step builder, and it's a **C2** finding — trunk test item 5, and the same defect the rubric anchors as "no step indicator anywhere in a 12-step flow".
 
 Not every item applies to every product; a full-screen builder legitimately has no search. Apply the ones that bear on orientation.
 

@@ -108,19 +108,28 @@ Bad:
 
 ## Calibration examples
 
-Drawn from the Funko Pop! Yourself 2-Pack audit — use as anchors.
+Archetypes from a multi-step product configurator with a checkout — the commonest shape we audit. Use as anchors: match the *shape* of your finding to the nearest row, then take its rating.
 
 | Finding | Lens | Rating | Why that rating |
 |---|---|---|---|
 | Persistent Back/Next with running subtotal pinned at all times | C1 | 🟢 | Zero hesitation; reliable anchor across every step. |
-| "LICENSED TOPS +£10 (4)" — surcharge stated in the category header | C4 | 🟢 | Cost known before commitment; nothing to decode. |
-| Three body options shown as unlabelled thumbnails | C4 | 🟠 | User infers from silhouette and is usually right — completes, but guesses. |
-| Buddies use "Add" buttons while every prior step was tap-the-tile | C3 | 🟠 | Model switches without warning; user recovers after a beat. |
-| No step indicator anywhere in a 12-step builder | C2 | 🔴 | Plausible abandonment — user can't judge whether to start or how much is left. |
-| Blue "2"/"3"/"5" badges on tiles with no legend | C1 | 🔴 | Undecodable, and it bears on a purchase decision. |
-| Four skin tones in a product called "Pop! *Yourself*" | C6 | 🔴 | Excludes; representation failure at the core of the value proposition. |
-| Styled cat and jersey appear as separate cart rows from the 2-Pack | C2 | 🔴 | Reads as duplicate charges — breaks the one-product mental model. |
-| Review says £64.99, cart says £68.99 | C5 | 🔴 | Money tie-breaker fires immediately; unexplained delta at peak intent. |
+| Category header states its surcharge ("Premium fabrics +£10") before entry | C4 | 🟢 | Cost known before commitment; nothing to decode. |
+| Explicit "None" tile, pre-selected, on an optional step | C4 | 🟢 | Opting out is as easy as opting in; no forced choice. |
+| Core options shown as unlabelled thumbnails | C4 | 🟠 | User infers from the image and is usually right — completes, but guesses. |
+| One step uses "Add" buttons while every prior step was tap-the-tile | C3 | 🟠 | Interaction model switches without warning; user recovers after a beat. |
+| Selected state is a thin outline on one step, a filled border on the next | C1 | 🟠 | Inconsistent active-state treatment; costs a re-read, not the task. |
+| Primary button rendered in a muted tint that reads as disabled while active | C1 | 🟠 | Signifier contradicts affordance — user hesitates, then tries anyway. |
+| No step indicator anywhere in a 12-step flow | C2 | 🔴 | Plausible abandonment — user can't judge whether to start or how much is left. |
+| Numeric badges on option tiles with no legend | C1 | 🔴 | Undecodable, and it bears on a purchase decision. |
+| Four skin tones in an avatar personalisation product | C6 | 🔴 | Excludes; representation failure at the core of the value proposition. |
+| Configured add-ons appear as separate cart rows from the parent product | C2 | 🔴 | Reads as duplicate charges — breaks the one-product mental model. |
+| Review screen says £64.99, cart says £68.99, no explanation on either | C5 | 🔴 | Money tie-breaker fires immediately; unexplained delta at peak intent. |
+
+Note the pairs that sit either side of a threshold. *Inconsistent selection styling* is Amber and *undecodable badges* is Red — both are "the UI didn't explain itself", but only one leaves the user unable to decide. *Muted-but-active button* is Amber and *no step indicator* is Red — both are missing signals, but only one plausibly ends the session. The line is the tie-breakers, not the severity of your irritation.
+
+### Adding your own anchors
+
+When an engagement produces a finding that no row above covers, add a row — generalised to its shape, not its client. "Fabric surcharge stated in header", never "ACME's LINEN +£10 label". Anchors are only reusable if they survive the client that produced them.
 
 ## Hygiene
 

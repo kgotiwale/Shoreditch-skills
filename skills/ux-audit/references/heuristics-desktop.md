@@ -33,7 +33,7 @@ Load when desktop is in scope. Baseline viewport 1440×900. These are prompts fo
 
 ## C4 · Content
 
-- **Expectation-setting** — does the entry point tell the truth about what's inside? "Choose Single, 2-Pack, or Baby" with only two cards is a copy/reality mismatch.
+- **Expectation-setting** — does the entry point tell the truth about what's inside? Subcopy naming three options where only two are selectable is a copy/reality mismatch.
 - **Pricing transparency** — surcharges named before commitment, at the point of choice, not at review.
 - **Input guidance** — character limits, format, examples, what's allowed. A bare "TYPE HERE" is a finding.
 - **Undecoded UI meaning** — badges, icons, or numbers with no legend. Route to C1 if it's the affordance, C4 if the copy is missing.

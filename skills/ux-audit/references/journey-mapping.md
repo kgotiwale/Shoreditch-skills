@@ -11,14 +11,14 @@ A **state** is a distinct thing the user perceives and acts on. One screenshot �
 
 ## Collapse repeats
 
-Long flows repeat by design. A 2-pack builder runs the whole single-figure build twice.
+Long flows repeat by design — a two-item configurator runs the whole single-item build twice; a multi-passenger booking repeats the traveller form.
 
 **Collapse when** the second instance is functionally identical and differs only in context labelling.
 **Keep separate when** the repeat introduces something new — a transition modal, a changed default, a different price.
 
 When you collapse, say so:
 
-> **17 · Second Pop! — Build (repeat)** — identical step order to Pop 1; context labels switch to "SECOND POP!".
+> **17 · Second item — Build (repeat)** — identical step order to the first; context labels switch to "SECOND".
 
 Then audit only what the repeat *adds* — usually the context-switching and any state that failed to carry over. Don't re-rate the same tile grid twice; it inflates the tally and buries the real findings.
 

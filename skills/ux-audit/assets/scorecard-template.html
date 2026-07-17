@@ -168,25 +168,25 @@ const LENS = {
 const RATE = { g:'Good', a:'Needs work', r:'Critical' };
 
 /* ========== 2. DATA — EDIT ==========
-   Replace criticals + states wholesale. The two entries below are worked
-   examples from the Funko Pop! Yourself audit — delete them.               */
+   Replace criticals + states wholesale. The entries below are generic worked
+   examples showing the shape — delete them.                                 */
 
 const criticals = [
-  '<b>Cart splits one configured product into multiple line items</b> — accessories styled onto figures reappear as separate rows, reading as duplicate charges.',
+  '<b>Cart splits one configured product into multiple line items</b> — add-ons chosen during the build reappear as separate rows, reading as duplicate charges.',
   '<b>Price changes between Review (£64.99) and Cart (£68.99)</b> with no explanation — erodes trust at the highest-intent moment.',
 ];
 
 const states = [
-  { n:1, name:'Landing / Pack Selector', phase:'Entry', f:[
-    ['C4','g','Value proposition','"Build a Pop! inspired by you" + price-from labels set expectation and cost upfront.'],
-    ['C4','a','"Single, 2-Pack, or Baby POP!"','Subcopy promises three paths but only two cards render — named yet unselectable option creates a mismatch.'],
-    ['C2','a','Unboxing video weight','A large video block sits under the choice, making the primary decision compete with marketing.','desktop'],
+  { n:1, name:'Landing / Product Selector', phase:'Entry', f:[
+    ['C4','g','Value proposition','Headline plus price-from labels set expectation and cost upfront.'],
+    ['C4','a','Subcopy names three options, two render','A named but unselectable path creates a copy/reality mismatch.'],
+    ['C2','a','Promo video weight','A large video block sits under the choice, making the primary decision compete with marketing.','desktop'],
   ]},
-  { n:2, name:'Builder — Body', phase:'Build', f:[
-    ['C1','g','Live 3D preview','Large real-time figure gives immediate feedback on every choice.'],
+  { n:2, name:'Configurator — Base', phase:'Build', f:[
+    ['C1','g','Live preview','Real-time render gives immediate feedback on every choice.'],
     ['C2','r','No progress indicator','No "step X of Y" in a 12-step flow — user cannot judge whether to start or how much is left.'],
     ['C6','r','Four skin tones only','Representation failure at the core of a personalisation product.'],
-    ['C6','a','Tone tiles below target size','Swatches fall under 44pt, crowding mis-taps.','mobile'],
+    ['C6','a','Option tiles below platform target size','Swatches fall under 44pt (Apple) though they clear the 24px WCAG AA floor.','mobile'],
   ]},
 ];
 /* ========== /DATA ========== */
