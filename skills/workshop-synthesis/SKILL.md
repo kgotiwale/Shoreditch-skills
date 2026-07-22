@@ -223,6 +223,58 @@ Ask which it was. Then:
 Whether anything can be inferred about the wider customer population — usually: no.]
 ```
 
+## Output — the deck (Shoreditch readout format)
+
+The readout above is the **working document** — the evidence layer a sceptic can check. The
+**client deliverable is a slide deck**, one section per workshop exercise, derived *from* that
+readout. Never skip the readout and draft slides straight off the photos: the deck inherits its
+credibility from the passes, and a slide with no note behind it is the exact failure mode this
+skill exists to prevent.
+
+**Per-exercise section — fixed running order:**
+
+1. **Divider** — `Exercise N` + the activity name (e.g. "How might we…").
+2. **Overview** — one 60–90 word paragraph. Name the groups/personas who worked the boards
+   (Alex, Sam, Priya…), the prompt they worked from, and the clusters that emerged. Prose, not
+   bullets. States what happened in the room, not yet what it means.
+3. **Workshop findings** — the raw board photos in a grid. The evidence, shown not described.
+4. **Key takeaways** — 4–6 themes. Each = a **heading stating the issue in the customer's voice**
+   + **one supporting bullet** that grounds it in the wall (verbatim note fragments, the recurring
+   phrase, or "appeared on all three boards"). This is Pass 2/3 rendered for stakeholders.
+5. **4-point summary** — exactly **four** numbered points, each = a **bold headline** + **one
+   sentence**. Fold minor/overlapping themes into the four; if a fifth is fighting to get in, it
+   belongs *inside* one of the four, not beside it.
+
+**Two-part exercises get two 4-pointers, at different altitudes.** A workshop exercise that runs
+"How Might We" *then* an ideation round (Crazy 8's, sketching) is two datasets, and one shared
+summary collapses them. Split it:
+
+- **Pt.1 — the needs (problem space).** Titled *"What the room is telling us."* Four numbered
+  *needs*, drawn from the HMW boards. Names the problem, not the fix.
+- **Pt.2 — the solutions (solution space).** Titled *"What to build."* Four numbered *concepts*,
+  drawn from the sketch boards. Each concept should trace back to a Pt.1 need.
+
+Keep the framing distinct — a Pt.1 point is a need the customer has; a Pt.2 point is a thing we
+would build. If a Pt.2 concept names no need from Pt.1, either the need is missing from Pt.1 or the
+concept is a solution nobody asked for — flag it, don't smuggle it in.
+
+**Rules that keep the deck honest:**
+
+- **Ground every takeaway.** A heading with no note fragment, recurring phrase, or board-count
+  under it is yours, not the room's — cut it or tag it `Me:`.
+- **Headings state the issue, not the topic.** "Trust is a human problem" not "Trust." Same rule
+  as Pass 2 theme naming — the heading should read as the customer speaking.
+- **The 4-pointer is a forcing function, not a trim.** Four is the count because it forces
+  distinctions up into the headlines. Don't pad to four; don't spill to five.
+- **Overview says what happened; takeaways say what it means; the 4-pointer says what to do next.**
+  Keep the three altitudes distinct across the three slide types — same discipline as the three
+  passes, one rung per slide.
+- **Cross-exercise echoes are worth stating** ("confirms the North Star from Exercise 2") — but
+  only when a note actually echoes it.
+
+Build the deck slides as an HTML artifact matching the studio layout only when asked; default to
+delivering the copy, structured under the five headings above, so it drops into the existing deck.
+
 ## Quality bar
 
 Before returning, check:
@@ -234,6 +286,9 @@ Before returning, check:
 - Does any sentence project from this room to "customers" generally? Remove it.
 - Are rejected ideas and open questions present? A readout with no dead ends and no disagreement
   is a readout that has been tidied into a story.
+- Does the deck's 4-point summary hold exactly four needs, each traceable to a takeaway that is
+  traceable to notes? Does every takeaway heading state an issue, not a topic? Do Overview /
+  takeaways / 4-pointer stay at their three altitudes (happened / means / do next)?
 
 ## Anti-patterns
 
