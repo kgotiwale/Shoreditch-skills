@@ -181,6 +181,8 @@ Ask which it was. Then:
 
 ## Output
 
+**All prose in the readout and the deck follows the [`writing`](../writing/SKILL.md) skill:** active voice, positive form, concrete language, needless words cut, no puffery, no em dashes. Load it before drafting the copy. A readout that reads as machine output undercuts the evidence discipline the three passes just bought.
+
 ```
 # Workshop readout: [topic] — [date]
 
@@ -289,6 +291,8 @@ Before returning, check:
 - Does the deck's 4-point summary hold exactly four needs, each traceable to a takeaway that is
   traceable to notes? Does every takeaway heading state an issue, not a topic? Do Overview /
   takeaways / 4-pointer stay at their three altitudes (happened / means / do next)?
+- Does the prose clear the [`writing`](../writing/SKILL.md) skill's bar? No passive voice without
+  cause, no puffery, no filler openers, no em dashes.
 
 ## Anti-patterns
 
