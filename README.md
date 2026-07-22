@@ -132,6 +132,38 @@ skills/
 
 **Read this before promising a client a readout from photos:** handwriting OCR is unreliable enough that the [CHI 2019 team](https://chi2021.acm.org/contents/wp-content/uploads/example_papers/Subramonyam-LaTeX-Single-Column.pdf) who built a sticky-note capture system declined to use it at all, using fiducial markers instead — and no vendor publishes an accuracy figure. Hence flag-and-ask over guess. Photo quality caps output quality: brief whoever shoots the walls with the capture guidance at the end of `SKILL.md` (wide shot per wall first, camera parallel, un-overlap the notes, capture the legend and the prompt) — most of it is unrecoverable afterwards.
 
+### `writing`
+
+The studio writing standard: Strunk's rules for clear, forceful prose, plus a field guide to the patterns that mark AI-generated text. Any prose a human reads should pass it.
+
+```
+/writing
+```
+
+For most work it has no trigger of its own; the other skills load it. `workshop-synthesis` runs its readouts and deck copy through it, so a deliverable sounds like one studio wrote it whoever ran the skill. Load it directly whenever you draft prose by hand: a README, a commit message, a PR description, an error string.
+
+**What it enforces:**
+
+- Strunk's six load-bearing rules: active voice, positive form, concrete language, omit needless words, keep related words together, emphatic word last.
+- No AI tells: puffery (pivotal, testament), promotional adjectives (seamless, robust), overused vocabulary (delve, leverage, tapestry), filler openers ("it's important to note"), and em dashes.
+
+The full 18 rules sit in four Strunk section files, split so a task loads only what it needs. The AI field guide, condensed from Wikipedia's "Signs of AI-generated content", names each tell and its fix.
+
+```
+skills/
+└── writing/
+    ├── SKILL.md
+    └── references/
+        ├── process.md                                   # 18-rule index + which file to load
+        ├── 02-elementary-rules-of-usage.md              # grammar, punctuation (Rules 1-7)
+        ├── 03-elementary-principles-of-composition.md   # active voice, concision (Rules 8-18)
+        ├── 04-a-few-matters-of-form.md                  # headings, quotations, titles
+        ├── 05-words-and-expressions-commonly-misused.md # word-level edits
+        └── signs-of-ai-writing.md                        # the AI field guide
+```
+
+**One rule is opinionated: no em dashes.** The em dash is the strongest single AI tell, so studio prose uses a hyphen, a comma, a colon, or a rewrite. The skill's own files practise this on themselves.
+
 ## Adding a new skill
 
 ```
