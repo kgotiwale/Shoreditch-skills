@@ -92,7 +92,10 @@ Or describe it — "summarise the workshop", "write up these stickies" — and i
 
 **Inputs:** photos. It refuses to synthesise from a verbal recollection of a session; that's someone's memory, not the room's output. It also asks for the activity prompts, the customer/internal split, and what decision the readout feeds — a note answering *"what frustrates you?"* is different evidence from an unprompted one.
 
-**Output:** a readout — themes with note-level evidence, prioritisation, rejected ideas, single-source signals, open questions, an ambiguity ledger, and method limitations.
+**Output — two layers:**
+
+- **The readout** (working document) — themes with note-level evidence, prioritisation, rejected ideas, single-source signals, open questions, an ambiguity ledger, and method limitations. The evidence layer a sceptic can check.
+- **The deck** (client deliverable) — derived *from* the readout, one section per workshop exercise: divider, overview, the raw board photos, key takeaways in the customer's voice, and a **4-point summary** — exactly four, each traceable to a takeaway traceable to a note. Two-part exercises (How Might We *then* ideation) get two 4-pointers at different altitudes — the needs (problem space) and the solutions (solution space), each concept tracing back to a need. Slides are never drafted off the photos directly; they inherit their credibility from the three passes, so a slide with no note behind it is the exact failure this skill exists to prevent.
 
 **The three passes** are the whole skill, and the rule is that they never merge:
 
