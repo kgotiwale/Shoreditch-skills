@@ -28,4 +28,4 @@ for skill in "$SRC"/*/; do
 done
 
 echo
-echo "Done. Restart Claude Code, then run /ux-audit in any project."
+echo "Done. Restart Claude Code — the skills above are now available in any project."

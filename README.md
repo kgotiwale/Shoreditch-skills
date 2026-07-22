@@ -80,6 +80,58 @@ skills/
 
 Thresholds are cited to primary sources throughout, because the near-misses bite: Apple's 44**pt** and WCAG 2.5.5's 44**px** are unrelated standards and the latter is **AAA** — the AA floor is **24px** (SC 2.5.8, five exceptions). Contrast is 4.5:1 text / 3:1 large text / 3:1 non-text; applying 4.5:1 to a border is a false positive. Don't loosen a citation without checking the source.
 
+### `workshop-synthesis`
+
+Photos of an in-person customer workshop — sticky walls, affinity clusters, dot-voted boards, flipcharts — into a stakeholder readout.
+
+```
+/workshop-synthesis
+```
+
+Or describe it — "summarise the workshop", "write up these stickies" — and it triggers.
+
+**Inputs:** photos. It refuses to synthesise from a verbal recollection of a session; that's someone's memory, not the room's output. It also asks for the activity prompts, the customer/internal split, and what decision the readout feeds — a note answering *"what frustrates you?"* is different evidence from an unprompted one.
+
+**Output — two layers:**
+
+- **The readout** (working document) — themes with note-level evidence, prioritisation, rejected ideas, single-source signals, open questions, an ambiguity ledger, and method limitations. The evidence layer a sceptic can check.
+- **The deck** (client deliverable) — derived *from* the readout, one section per workshop exercise: divider, overview, the raw board photos, key takeaways in the customer's voice, and a **4-point summary** — exactly four, each traceable to a takeaway traceable to a note. Two-part exercises (How Might We *then* ideation) get two 4-pointers at different altitudes — the needs (problem space) and the solutions (solution space), each concept tracing back to a need. Slides are never drafted off the photos directly; they inherit their credibility from the three passes, so a slide with no note behind it is the exact failure this skill exists to prevent.
+
+**The three passes** are the whole skill, and the rule is that they never merge:
+
+| Pass | Produces | Status |
+|------|----------|--------|
+| 1. Transcribe | what is physically on the board, note by note | **Data** |
+| 2. Cluster | groupings — the room's own, wherever they exist | **Findings** |
+| 3. Interpret | themes, readings, recommendations | **Insight** |
+
+[NN/g's ladder](https://www.nngroup.com/articles/data-findings-insights-differences/). A photographed sticky, a cluster, and a theme name are three different epistemic objects, and collapsing them is how a facilitator's pet theory ends up wearing a customer's clothes. Every claim in the output cites note IDs (`W1-N014`), so a sceptic can open the photo and check — anything that can't is tagged `Me:` ([NN/g's convention](https://www.nngroup.com/articles/group-notetaking/)) or cut.
+
+**The room's clustering is authoritative — the skill will not re-cluster.** If participants grouped notes physically, that grouping *is* the finding. It only clusters where the wall is genuinely ungrouped.
+
+**Unreadable handwriting comes back to you marked on the photo**, not as a ledger line you can't act on:
+
+```bash
+python3 skills/workshop-synthesis/scripts/annotate.py --image WALL.jpg --marks marks.json
+```
+
+Boxes every uncertain note in magenta with its ID and a legend strip saying what's needed. This happens *before* clustering — a theme built on a guessed note has to be rebuilt once corrected, so guesses get resolved while they're still cheap.
+
+```
+skills/
+└── workshop-synthesis/
+    ├── SKILL.md              # the three passes, output, quality bar
+    └── scripts/
+        └── annotate.py       # mark unreadable notes for a human to decipher
+```
+
+**Two rules here are counter-intuitive, and both are cited — don't "fix" them:**
+
+- **No minimum cluster size.** A single note is a legitimate finding. [NN/g is explicit](https://www.nngroup.com/articles/affinity-diagram/) that small clusters signal diverse perspectives, and *Contextual Design* caps first-level groups at **four** — so a fat pile is a signal to **split**, not a strong theme. Frequency is a property of a theme, never its entry ticket.
+- **Counts scope evidence; they never project rates.** "7 of the 10 participants in this session", never "70% of customers". [NN/g argues against](https://www.nngroup.com/articles/actionable-usability-findings/) even the "three users couldn't find it" framing — it reads as blaming users and invites dismissal. Rank by severity.
+
+**Read this before promising a client a readout from photos:** handwriting OCR is unreliable enough that the [CHI 2019 team](https://chi2021.acm.org/contents/wp-content/uploads/example_papers/Subramonyam-LaTeX-Single-Column.pdf) who built a sticky-note capture system declined to use it at all, using fiducial markers instead — and no vendor publishes an accuracy figure. Hence flag-and-ask over guess. Photo quality caps output quality: brief whoever shoots the walls with the capture guidance at the end of `SKILL.md` (wide shot per wall first, camera parallel, un-overlap the notes, capture the legend and the prompt) — most of it is unrecoverable afterwards.
+
 ## Adding a new skill
 
 ```
