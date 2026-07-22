@@ -6,15 +6,25 @@ This is the single source of truth for studio skills. Everyone installs from her
 
 ## Install
 
+**Prerequisite:** Claude Code installed and signed in. New to it? `npm i -g @anthropic-ai/claude-code`, then run `claude` once.
+
 ```bash
 git clone https://github.com/kgotiwale/Shoreditch-skills.git shoreditch-skills
 cd shoreditch-skills
 ./install.sh
 ```
 
-`install.sh` symlinks each skill into `~/.claude/skills/`, making them available in **every** project, which matters: client work lives in client folders, not in here. Because they're symlinks, `git pull` updates everyone's skills in place.
+`install.sh` symlinks each skill folder into `~/.claude/skills/`. That path is user-scoped, so the skills load in **every** project you open, not only inside this repo. Symlinks (not copies) mean a later `git pull` updates the live skills in place, with no reinstall.
 
-Restart Claude Code after installing.
+Restart Claude Code so it picks up the new skills.
+
+**Verify they loaded:**
+
+```bash
+ls -l ~/.claude/skills        # ux-audit, workshop-synthesis, and writing should point back into this repo
+```
+
+Each studio skill should show as a symlink into your clone. If one is missing, re-run `./install.sh` and read its output: it skips (rather than overwrites) any name that already exists as a real folder.
 
 ## Skills
 
@@ -163,6 +173,38 @@ skills/
 ```
 
 **One rule is opinionated: no em dashes.** The em dash is the strongest single AI tell, so studio prose uses a hyphen, a comma, a colon, or a rewrite. The skill's own files practise this on themselves.
+
+## Using a skill
+
+Two ways to fire one:
+
+- **Automatic.** Describe the task and the matching skill triggers on its own: "audit this checkout flow", "write up these workshop stickies", "clean up this prose". The trigger lives in each skill's `description`.
+- **By name.** Type the slash command: `/ux-audit`, `/workshop-synthesis`, `/writing`.
+
+`writing` also loads on its own whenever another skill emits prose, so deliverables read in one studio voice. To have it apply in **every** project by default, add a line to your user memory at `~/.claude/CLAUDE.md`:
+
+```
+Apply the `writing` skill to all prose a human will read (docs, commits, PRs, UI copy, client deliverables).
+```
+
+## Updating
+
+```bash
+cd shoreditch-skills
+git pull
+```
+
+Symlinks make the update live at once. Restart Claude Code only if a skill was added or renamed.
+
+## Loading a single skill
+
+Don't want all of them? Symlink the one folder yourself:
+
+```bash
+ln -s "$(pwd)/skills/ux-audit" ~/.claude/skills/ux-audit
+```
+
+Restart Claude Code. A symlink tracks the repo, so `git pull` still updates it; a copy would not.
 
 ## Adding a new skill
 
