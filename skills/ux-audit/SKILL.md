@@ -89,6 +89,8 @@ Element rating asks "is this element good?". A screen of individually-fine eleme
 
 Apply `references/rubric.md`. Every finding gets: lens code (C1–C6), rating (Green/Amber/Red), element name, one-sentence rationale.
 
+Write the rationale to the [`writing`](../writing/SKILL.md) skill: active voice, concrete, state the defect not the fix, no puffery, no em dashes. It is the prose a client reads first, and it should sound like one studio wrote it whoever ran the audit.
+
 ### 7. Roll up
 
 - Tally Green / Amber / Red and percentages.
@@ -102,6 +104,8 @@ Build the scorecard from `assets/scorecard-template.html`:
 1. Copy the template to the working directory (or scratchpad).
 2. Replace the `data` array and the header metadata. **Only** those — the template's CSS, theming, and render logic are shared studio furniture; don't restyle per client.
 3. Publish with the Artifact tool.
+
+All copy in the scorecard (headline, pain-point descriptions, rationales) follows the [`writing`](../writing/SKILL.md) skill before you publish.
 
 Confirm with the client whether repeated states were collapsed and whether they want a fix-priority layer — both change the deliverable's shape.
 
