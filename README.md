@@ -21,7 +21,7 @@ Restart Claude Code so it picks up the new skills.
 **Verify they loaded:**
 
 ```bash
-ls -l ~/.claude/skills        # ux-audit, workshop-synthesis, and writing should point back into this repo
+ls -l ~/.claude/skills        # design-system-extract, ux-audit, workshop-synthesis, and writing should point back into this repo
 ```
 
 Each studio skill should show as a symlink into your clone. If one is missing, re-run `./install.sh` and read its output: it skips (rather than overwrites) any name that already exists as a real folder.
@@ -141,6 +141,49 @@ skills/
 - **Counts scope evidence; they never project rates.** "7 of the 10 participants in this session", never "70% of customers". [NN/g argues against](https://www.nngroup.com/articles/actionable-usability-findings/) even the "three users couldn't find it" framing; it reads as blaming users and invites dismissal. Rank by severity.
 
 **Read this before promising a client a readout from photos:** handwriting OCR is unreliable enough that the [CHI 2019 team](https://chi2021.acm.org/contents/wp-content/uploads/example_papers/Subramonyam-LaTeX-Single-Column.pdf) who built a sticky-note capture system declined to use it at all, using fiducial markers instead, and no vendor publishes an accuracy figure. Hence flag-and-ask over guess. Photo quality caps output quality: brief whoever shoots the walls with the capture guidance at the end of `SKILL.md` (wide shot per wall first, camera parallel, un-overlap the notes, capture the legend and the prompt); most of it is unrecoverable afterwards.
+
+### `design-system-extract`
+
+Reverse-engineer a live website's design system into an evidence-backed component inventory, a stakeholder audit document, and a working Figma library.
+
+```
+/design-system-extract
+```
+
+Use it when a client already has a shipped site and the project needs to know what can be reused. It answers three questions in order: what components exist, which are actually in use, and what is missing.
+
+**The failure mode it exists to prevent** is a confident inventory nobody checked. A component list assembled from a stylesheet reads as authoritative and is frequently wrong: class names lie about their values, much of the CSS is dead, and one organism ships in configurations that look like separate components. So every claim carries a label:
+
+| Label | Means | Evidence required |
+|---|---|---|
+| **Observed** | Seen in the source | A CSS selector, or a measured DOM node |
+| **Derived** | Calculated from observations | The inputs and the arithmetic |
+| **Proposed** | The studio invented it | Said so in the same sentence |
+
+Four rules follow. "Exists in CSS" and "is in use" are separate claims, reported as separate numbers. Reuse needs a page count, because one sighting is not a pattern. Absence claims state their search scope — "no match in the 1.98MB parsed", never "does not exist". And names are never trusted: on the HSBC audit, `A-PAR13-ART-DEV` rendered at 17px and was the most-used body style on the site.
+
+`assets/extract.py` does the parsing. It is media-query aware, so a component's base spec is not silently merged with its breakpoint overrides, and it reports the count of components defined in CSS but present on no sampled page — the number that stops a dead-code inventory being sold as a live one.
+
+```bash
+python3 skills/design-system-extract/assets/extract.py \
+  --css site.css conthub.css --pages 'pages/*.html' --out ./inventory
+```
+
+```
+skills/
+└── design-system-extract/
+    ├── SKILL.md
+    ├── references/
+    │   ├── css-forensics.md    # taxonomy discovery, techniques that hide in CSS
+    │   ├── verification.md     # measuring rendered components, the usage matrix
+    │   └── figma-build.md      # variables, components, font and API constraints
+    └── assets/
+        └── extract.py          # media-aware parser, taxonomy, usage matrix
+```
+
+`figma-build.md` carries the workaround for a client's licensed font that Figma's API context cannot load: bind a `FONT_FAMILY` variable instead of setting `fontName`, which skips the loaded-font check. It also normalises badly built font files that declare themselves as several families.
+
+Superposition, Project Wallace and CSS Stats extract tokens from a URL and are worth running as a cross-check on colour and type. None of them discovers a client's component taxonomy, proves what is in use, or builds the Figma library.
 
 ### `writing`
 
