@@ -160,9 +160,9 @@ Use it when a client already has a shipped site and the project needs to know wh
 | **Derived** | Calculated from observations | The inputs and the arithmetic |
 | **Proposed** | The studio invented it | Said so in the same sentence |
 
-Four rules follow. "Exists in CSS" and "is in use" are separate claims, reported as separate numbers. Reuse needs a page count, because one sighting is not a pattern. Absence claims state their search scope — "no match in the 1.98MB parsed", never "does not exist". And names are never trusted: on the HSBC audit, `A-PAR13-ART-DEV` rendered at 17px and was the most-used body style on the site.
+Four rules follow. "Exists in CSS" and "is in use" are separate claims, reported as separate numbers. Reuse needs a page count, because one sighting is not a pattern. Absence claims state their search scope: "no match in the 1.98MB parsed", never "does not exist". And names are never trusted: on the HSBC audit, `A-PAR13-ART-DEV` rendered at 17px and was the most-used body style on the site.
 
-`assets/extract.py` does the parsing. It is media-query aware, so a component's base spec is not silently merged with its breakpoint overrides, and it reports the count of components defined in CSS but present on no sampled page — the number that stops a dead-code inventory being sold as a live one.
+`assets/extract.py` does the parsing. It is media-query aware, so a component's base spec is not silently merged with its breakpoint overrides, and it reports the count of components defined in CSS but present on no sampled page. That is the number that stops a dead-code inventory being sold as a live one.
 
 ```bash
 python3 skills/design-system-extract/assets/extract.py \
